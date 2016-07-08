@@ -8,3 +8,5 @@
 #### Download data from http://labrosa.ee.columbia.edu/millionsong/musixmatch#getting
 #### Then store the test and train text files in a directory called "mxm\_data"
 #### mxm\_data should be in the CDIPS\_Pandora directory (this repository)
+
+#### Should also download the Million Songs Reduced DataSet?
