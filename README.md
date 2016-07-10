@@ -10,9 +10,15 @@
 
 ### For the MXM\_Explore notebook, swuerth did the following:
 > Downloaded data from http://labrosa.ee.columbia.edu/millionsong/musixmatch#getting
+
 > Stored the test and train text files in a directory called "mxm\_data"
+
 > mxm\_data should be in the CDIPS\_Pandora directory (this repository)
+
 > The files used are mxm\_dataset\_test.txt   mxm\_dataset\_train.txt
+
 > They are preprocessed lyrics, stored as Bag of Words vectors for each song
+
 > The vectors are stored in sparse format as word\_index:word\_count 
+
 > Where word\_index ranges from 1 to 5000 as only the 5000 most common words are counted
