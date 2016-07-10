@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. base module &mdash; Python musiXmatch 0.6.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.6.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python musiXmatch 0.6.0 documentation" href="index.html" />
+    <link rel="next" title="4. artist module" href="artist.html" />
+    <link rel="prev" title="2. WS module" href="ws.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="artist.html" title="4. artist module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ws.html" title="2. WS module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python musiXmatch 0.6.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-musixmatch.base">
+<span id="base-module"></span><h1>3. base module<a class="headerlink" href="#module-musixmatch.base" title="Permalink to this headline">¶</a></h1>
+<p>This module contains tha base classes for the Musixmatch API generated content:</p>
+<ul class="simple">
+<li><a class="reference internal" href="artist.html#musixmatch.artist.Artist" title="musixmatch.artist.Artist"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.artist.Artist</span></code></a></li>
+<li><code class="xref py py-class docutils literal"><span class="pre">musixmatch.artist.Album</span></code></li>
+<li><a class="reference internal" href="track.html#musixmatch.track.Track" title="musixmatch.track.Track"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.track.Track</span></code></a></li>
+<li><a class="reference internal" href="lyrics.html#musixmatch.lyrics.Lyrics" title="musixmatch.lyrics.Lyrics"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.lyrics.Lyrics</span></code></a></li>
+<li><a class="reference internal" href="subtitle.html#musixmatch.subtitle.Subtitle" title="musixmatch.subtitle.Subtitle"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.subtitle.Subtitle</span></code></a></li>
+</ul>
+<dl class="class">
+<dt id="musixmatch.base.Base">
+<em class="property">class </em><code class="descname">Base</code><a class="headerlink" href="#musixmatch.base.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The very base (abstract) class of the musixmatch package. I want all
+classes to implement <code class="xref py py-meth docutils literal"><span class="pre">__str__()</span></code> and <code class="xref py py-meth docutils literal"><span class="pre">__repr__()</span></code>.</p>
+<p>Casting an <a class="reference internal" href="#musixmatch.base.Base" title="musixmatch.base.Base"><code class="xref py py-class docutils literal"><span class="pre">Base</span></code></a> into a <code class="xref py py-class docutils literal"><span class="pre">str</span></code> returns a pretty printed
+(maybe using <code class="xref py py-mod docutils literal"><span class="pre">pprint</span></code>) string representing the object.</p>
+<p>Using <code class="xref py py-func docutils literal"><span class="pre">repr()</span></code> on an <a class="reference internal" href="#musixmatch.base.Base" title="musixmatch.base.Base"><code class="xref py py-class docutils literal"><span class="pre">Base</span></code></a> returns an evaluable string
+representing the instance, whenever it is reasonable.</p>
+<p><a class="reference internal" href="#musixmatch.base.Base" title="musixmatch.base.Base"><code class="xref py py-class docutils literal"><span class="pre">Base</span></code></a> instances are hashable.</p>
+<dl class="classmethod">
+<dt id="musixmatch.base.Base.apiMethod">
+<em class="property">classmethod </em><code class="descname">apiMethod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.Base.apiMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></code></a> that should be used to
+build the object. Defaults to <em>label.get</em> where <em>label</em> is the result
+from <a class="reference internal" href="#musixmatch.base.Base.label" title="musixmatch.base.Base.label"><code class="xref py py-meth docutils literal"><span class="pre">label()</span></code></a></p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="musixmatch.base.Base.label">
+<em class="property">classmethod </em><code class="descname">label</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.Base.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the label that should be used as keyword in the
+<a class="reference internal" href="api.html#musixmatch.api.JsonResponseMessage" title="musixmatch.api.JsonResponseMessage"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.api.JsonResponseMessage</span></code></a> body.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="musixmatch.base.Item">
+<em class="property">class </em><code class="descname">Item</code><span class="sig-paren">(</span><em>dictionary=None</em>, <em>**keywords</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.Item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#musixmatch.base.Base" title="musixmatch.base.Base"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.base.Base</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">dict</span></code></p>
+<p>This is the base class for any entity in musixmatch package. Even if
+response messages may have XML format, the JSON representation will be the
+main data format, so the <code class="xref py py-class docutils literal"><span class="pre">dict</span></code> sounds like the best base class.
+It fetches the item data by guessing the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></code></a>
+and building the query based on a given keyword argument. Positional
+argument is meant to be used by collection classes. Use only keyword
+arguments.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="musixmatch.base.ItemsCollection">
+<em class="property">class </em><code class="descname">ItemsCollection</code><span class="sig-paren">(</span><em>*items</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#musixmatch.base.Base" title="musixmatch.base.Base"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.base.Base</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">list</span></code></p>
+<p>This is the base class for collections of items, like search results, or
+charts. It behaves like <code class="xref py py-class docutils literal"><span class="pre">list</span></code>, but enforce new items to be
+instance of appropriate class checking against <a class="reference internal" href="#musixmatch.base.ItemsCollection.allowedin" title="musixmatch.base.ItemsCollection.allowedin"><code class="xref py py-meth docutils literal"><span class="pre">allowedin()</span></code></a>.</p>
+<dl class="classmethod">
+<dt id="musixmatch.base.ItemsCollection.allowedin">
+<em class="property">classmethod </em><code class="descname">allowedin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.allowedin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the allowed content class. Defaults to <a class="reference internal" href="#musixmatch.base.Item" title="musixmatch.base.Item"><code class="xref py py-class docutils literal"><span class="pre">Item</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musixmatch.base.ItemsCollection.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a shallow copy of the collection.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="musixmatch.base.ItemsCollection.fromResponseMessage">
+<em class="property">classmethod </em><code class="descname">fromResponseMessage</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.fromResponseMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an object instance, built on a
+<a class="reference internal" href="api.html#musixmatch.api.ResponseMessage" title="musixmatch.api.ResponseMessage"><code class="xref py py-class docutils literal"><span class="pre">musixmatch.api.ResponseMessage</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musixmatch.base.ItemsCollection.page">
+<code class="descname">page</code><span class="sig-paren">(</span><em>page_index</em>, <em>page_size=3</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a specific page, considering pages that contain &#8220;at most&#8221;
+<strong>page_size</strong> items.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musixmatch.base.ItemsCollection.paged">
+<code class="descname">paged</code><span class="sig-paren">(</span><em>page_size=3</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.paged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns self, paged by <strong>page_size</strong>. That is, a list of
+sub-collections which contain &#8220;at most&#8221; <strong>page_size</strong> items.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musixmatch.base.ItemsCollection.pager">
+<code class="descname">pager</code><span class="sig-paren">(</span><em>page_size=3</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.pager" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generator of pages, considering pages that contain &#8220;at most&#8221;
+<strong>page_size</strong> items.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="musixmatch.base.ItemsCollection.pages">
+<code class="descname">pages</code><span class="sig-paren">(</span><em>page_size=3</em><span class="sig-paren">)</span><a class="headerlink" href="#musixmatch.base.ItemsCollection.pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of pages, considering pages that contain &#8220;at most&#8221;
+<strong>page_size</strong> items.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ws.html"
+                        title="previous chapter">2. WS module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="artist.html"
+                        title="next chapter">4. artist module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/base.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="artist.html" title="4. artist module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ws.html" title="2. WS module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python musiXmatch 0.6.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011, Luca De Vitis.
+      Last updated on Jul 05, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>
