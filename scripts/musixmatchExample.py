@@ -15,7 +15,7 @@ import pdb
 import pandas as pd 
 
 #my personal API key. Get your own at the MusixMatch developer site (see the instructions)
-apikey = "ad4dd59d0bb77715f1d6db569cbae1a8" 
+apikey = "f8a009fe01e53de1e8a1388e60812ef5" 
 
 #Search data set 
 collection = TracksCollection.fromSearch(q_track="Hotline Bling", apikey = apikey)

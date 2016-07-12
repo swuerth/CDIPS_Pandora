@@ -12,8 +12,8 @@ import pandas as pd
 
 #these are MY API keys; get your own by registering for the Spotify API. 
 #You'll probably each need to get your own since there are rate limits per key. 
-client_id = '8c02bbb6dde64b128f6e39357e6b4cbf'
-client_secret='36c765629d254655b8e32ce4b1e60615'
+client_id = 'e3c98f5beacd4822bcef2e20fd672b8b'
+client_secret='dfc126726ba1457d9f2ad14f8ae99f77'
 
 #seems to do an OR search on search terms, so just q='hotline bling drake' will return plenty of items. 
 
