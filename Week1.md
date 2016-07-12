@@ -1,6 +1,26 @@
 ### Week 1
 
-### Notes from meeting with team
+### Tuesday July 12, Claire + Team, Google Hangout
+#### Plans/tasks for database:
+> Get everything in Pandas DataFrame, we can use pickle.dump() to save everything
+>> Elena and Ed : Work on getting lots of EchoNest data stored nicely in a DF
+>> Steph: Work on getting lots of lyrics data
+
+#### Other plans/tasks:
+>> Athena: Learn flask for making web apps. It will be cool to have a web app no matter what we end up presenting. Either for a recommender or for displaying different visualizations (e.g., input feature like danceability and output a pretty time series of that feature)
+
+#### Once we have the database ready we can start:
+> NLP on lyrics
+
+> Reporoducing EchoNest findings from http://blog.echonest.com/post/70299217721/7-decades-7-musical-evolutions as a sanity check
+
+> Removing trends and exploring seasonality
+
+> Unsupervised recommendations -- we dont have user data so we have to use similarities between songs/artists to recommend things. In industry such a product would be tested with AB testing, but we arent able to do that in our context. 
+ 
+
+
+### Monday July 11, Team Meeting 401 McCone
 
 #### To Do: Acquire Billboard Top 100 Data
 > How far back should we look?
