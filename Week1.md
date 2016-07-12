@@ -1,13 +1,17 @@
 ### Week 1
 
 ### Tuesday July 12, Claire + Team, Google Hangout
+
+#### Next meeting: Google Hangout again 10am Friday July 15
+
 #### Plans/tasks for database:
 > Get everything in Pandas DataFrame, we can use pickle.dump() to save everything
 >> Elena and Ed : Work on getting lots of EchoNest data stored nicely in a DF
+
 >> Steph: Work on getting lots of lyrics data
 
 #### Other plans/tasks:
->> Athena: Learn flask for making web apps. It will be cool to have a web app no matter what we end up presenting. Either for a recommender or for displaying different visualizations (e.g., input feature like danceability and output a pretty time series of that feature)
+> Athena: Learn flask for making web apps. It will be cool to have a web app no matter what we end up presenting. Either for a recommender or for displaying different visualizations (e.g., input feature like danceability and output a pretty time series of that feature)
 
 #### Once we have the database ready we can start:
 > NLP on lyrics
