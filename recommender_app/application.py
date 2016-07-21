@@ -17,9 +17,9 @@ app.question2_answered = 0
 
 @app.route('/index',methods=['GET', 'POST'])
 def index():
-	nquestion1=app.nquestion1
 	app.question1_answered = 0
 	app.question2_answered = 0
+	nquestion1=app.nquestion1
 	if request.method == 'GET':
 		return render_template('welcome.html',num=nquestion1)
 	else:
@@ -83,4 +83,4 @@ def next2(): #remember the function name does not need to match th eURL
 
  
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(port=33507)
