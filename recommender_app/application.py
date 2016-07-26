@@ -81,7 +81,11 @@ def main():
 @app.route('/next',methods=['GET', 'POST'])
 def next(): #remember the function name does not need to match th eURL
 	if request.method == 'GET':
+		app.vars['song_or_artist'] = ''
+		app.vars['song_name'] = ''
+		app.vars['artist_name'] = ''
 		app.question1_answered = 0
+		app.question2_answered = 0
 		#for clarity (temp variables)
 		n = app.nquestion1 - len(app.question1) + 1
 		q = app.question1.keys()[0] #python indexes at 0
@@ -102,6 +106,8 @@ def next(): #remember the function name does not need to match th eURL
 def next2(): #remember the function name does not need to match th eURL
 	if request.method == 'GET':
 		app.vars['song_or_artist'] = ''
+		app.vars['song_name'] = ''
+		app.vars['artist_name'] = ''
 		app.question2_answered = app.question2_answered+0
 		#for clarity (temp variables)
 		n2 = app.nquestion2 - len(app.question2) + 1
@@ -126,7 +132,7 @@ def pickasong(): #remember the function name does not need to match th eURL
 	if request.method == 'GET':
 		return render_template('pickasong.html',song_list=app.song_list)
 	else:    #request was a POST
-		app.vars['song_or_artist'] = 'Song'
+		app.vars['song_or_artist'] = 'Both'
 		app.vars['song_name'] = app.song_list[np.int(request.form['song_pick'])]
  	return redirect('/main')
  
@@ -151,10 +157,11 @@ def song_check():
 		return(1)	
 
 	#read df from pickle file
-	lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
+	#lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
+	lyrics_df = pd.read_pickle('LyricsDF_with_BoW_tdif_sparse')
 	
 	#read hot100df from pickle file
-	hot100_df = pd.read_pickle('./Billboard100DF_cleaned')
+	#hot100_df = pd.read_pickle('./Billboard100DF_cleaned')
 
 	if(app.vars['song_or_artist'] == 'Artist'):
 		artist_i_like = app.vars['artist_name']
@@ -200,7 +207,7 @@ def cos_dis(your_song_bow_vec, other_song_bow_vec):
 def find_similar():
 
 	#lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
-	lyrics_df = pd.read_pickle('LyricsDF_with_BoW&tdif_sparse')
+	lyrics_df = pd.read_pickle('LyricsDF_with_BoW_tdif_sparse')
 		
 	CosDis2 = pd.read_pickle('CosDis_tfidf_reduced')
 	CosDis2 = CosDis2.as_matrix()
@@ -257,12 +264,13 @@ def find_similar():
 	lyrics_recent = lyrics_recent.reset_index()
 	del lyrics_recent['index']
 	
-	index1 = lyrics_df[lyrics_df['track_name']==song_i_like].index
+	my_pick = lyrics_df[lyrics_df['track_name']==song_i_like]
+	index1 =  my_pick[my_pick['artist_name']==artist_i_like].index
 
 	lyrics_recent['dist3'] = 2.0
 	num_recent_songs = len(lyrics_recent)
 	for j in range(num_recent_songs):
-		lyrics_recent['dist3'][j] = CosDis2[index1, j]
+		lyrics_recent['dist3'].iloc[j] = CosDis2[index1, j]
 
  	lyrics_recent['dist_tot'] = lyrics_recent['dist1'] + lyrics_recent['dist2'] + lyrics_recent['dist3']
  	
