@@ -3,4 +3,4 @@ gunicorn==19.6.0
 pandas==0.18.1
 numpy==1.10.1
 scipy==0.17.1
-sklearn==0.17.1
+scikit-learn==0.17.1
