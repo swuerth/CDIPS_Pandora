@@ -1,0 +1,19 @@
+Hey dudes -- you should be able to run this app locally if you follow these steps:
+From within the recommender_app_gcloud directory, type this in the command line:
+source env/bin/activate
+pip install -r requirements.txt
+
+Then you should be in a virtual environment "env" that runs python 2.
+and the next line will install all the packages required to run this app
+
+Now MAKE SURE you have these DataFrame files in this folder:
+LyricsDF_with_BoW_tdif_sparse
+CosDis_tfidf_reduced
+
+If you don't have them, use this google drive link to a folder called "data_for_recommender":
+https://drive.google.com/open?id=0B8TqvogLXwZrWGdBU2NwV3dNYzg
+
+Then type:
+python main.py
+And if it works, you should be able to navigate your browser to:
+http://127.0.0.1:33508/
