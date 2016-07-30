@@ -240,19 +240,19 @@ def song_check_echo():
 		for x in range(len(song_list['Title'])):
 			session['song_list'][x] = song_list['Title'][x]
 		return(3)
-
-	if len(match)>0 and session['artist_name'] == 'Song':  #Found multiple songs
+	if len(match)>0 and session['song_or_artist'] == 'Song':  #Found multiple songs
+	#if len(match)>0 and session['artist_name'] == 'Song':  #Found multiple songs
+		#song_i_like = session['song_name']
 		session['match_artist'] = {}
 		session['match_song'] = {}
-		#session['match_date'] = {}
+		session['match_date'] = {}
 		match = lyrics_df[lyrics_df['Title']==song_i_like]
 		match = match.reset_index()
-		#match['date'] = match['date'].apply(lambda x: x.date())
-		for x in range(len(match['track_name'])):
+		for x in range(len(match['Title'])):
 			session['match_song'][x] = match['Title'][x]
 			session['match_artist'][x] = match['Artist_x'][x]
-		#	session['match_date'][x] = match['date'][x]
-		return(4)
+			session['match_date'][x] = ''
+        return(4)
 
 def find_similar_sentiment():
 	#lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
@@ -315,50 +315,50 @@ def find_similar_sentiment():
 	#return resulto
 
 def find_similar_words():
-    #lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
-    lyrics_df = pd.read_pickle('LyricsDF_with_BoW_tdif_sparse')
+	#lyrics_df = pd.read_pickle('CleanedLyricsDF_MaxRank_100')
+	lyrics_df = pd.read_pickle('LyricsDF_with_BoW_tdif_sparse')
 
-    CosDis2 = pd.read_pickle('CosDis_tfidf_reduced')
-    CosDis2 = CosDis2.as_matrix()
+	CosDis2 = pd.read_pickle('CosDis_tfidf_reduced')
+	CosDis2 = CosDis2.as_matrix()
 
-    song_i_like = session['song_name']
-    artist_i_like = session['artist_name']
+	song_i_like = session['song_name']
+	artist_i_like = session['artist_name']
 
-    #get date of inputted song
-    input_date=lyrics_df[lyrics_df['track_name']==song_i_like].date.values[0]
-    #input_date = input_date.astype('datetime64[D]')
-    session['date'] = datetime.datetime.strptime(str(input_date).split('.',1)[0],'%Y-%m-%dT%H:%M:%S')
+	#get date of inputted song
+	input_date=lyrics_df[lyrics_df['track_name']==song_i_like].date.values[0]
+	#input_date = input_date.astype('datetime64[D]')
+	session['date'] = datetime.datetime.strptime(str(input_date).split('.',1)[0],'%Y-%m-%dT%H:%M:%S')
 
-    pd.options.mode.chained_assignment = None  # default='warn'
+	pd.options.mode.chained_assignment = None  # default='warn'
 
-    #determine which recent song has most similarity in lyrics
-    lyrics_recent = lyrics_df[lyrics_df['date']>datetime.date(2013,1,1)]
-    lyrics_recent = lyrics_recent.reset_index()
-    del lyrics_recent['index']
+	#determine which recent song has most similarity in lyrics
+	lyrics_recent = lyrics_df[lyrics_df['date']>datetime.date(2013,1,1)]
+	lyrics_recent = lyrics_recent.reset_index()
+	del lyrics_recent['index']
    
-    my_pick = lyrics_df[lyrics_df['track_name']==song_i_like]
-    index1 =  my_pick[my_pick['artist_name']==artist_i_like].index
+	my_pick = lyrics_df[lyrics_df['track_name']==song_i_like]
+	index1 =  my_pick[my_pick['artist_name']==artist_i_like].index
 
-    lyrics_recent['dist3'] = 2.0
-    num_recent_songs = len(lyrics_recent)
-    for j in range(num_recent_songs):
-        lyrics_recent['dist3'].iloc[j] = CosDis2[index1, j]
+	lyrics_recent['dist3'] = 2.0
+	num_recent_songs = len(lyrics_recent)
+	for j in range(num_recent_songs):
+		lyrics_recent['dist3'].iloc[j] = CosDis2[index1, j]
 
-    lyrics_recent['dist_total'] = lyrics_recent['dist3']
+	lyrics_recent['dist_total'] = lyrics_recent['dist3']
 
-    #recommend nreturn songs based on sum of cosine dist, sentiment dist, and  lexical density dist
-    result = lyrics_recent.sort_values('dist_total')[:nreturn]
-    result = result.reset_index()
+	#recommend nreturn songs based on sum of cosine dist, sentiment dist, and  lexical density dist
+	result = lyrics_recent.sort_values('dist_total')[:nreturn]
+	result = result.reset_index()
 
-    result['date'] = result['date'].apply(lambda x: x.date())
+	result['date'] = result['date'].apply(lambda x: x.date())
    
-    resulto = {'artist_name':{}, 'track_name':{}, 'date':{}, 'dist_total':{}}
-    for x in range(0,nreturn):
-        resulto['artist_name'][x] = result['artist_name'][x]
-        resulto['track_name'][x] = result['track_name'][x]
-        resulto['date'][x] = result['date'][x]
-        resulto['dist_total'][x] = 1-result['dist_total'][x]
-    session['result'] = resulto	
+	resulto = {'artist_name':{}, 'track_name':{}, 'date':{}, 'dist_total':{}}
+	for x in range(0,nreturn):
+		resulto['artist_name'][x] = result['artist_name'][x]
+		resulto['track_name'][x] = result['track_name'][x]
+		resulto['date'][x] = result['date'][x]
+		resulto['dist_total'][x] = 1-result['dist_total'][x]
+	session['result'] = resulto	
 
 def find_similar_echo():
 	relevant = pd.read_pickle('ElenasRelevantSongs')
