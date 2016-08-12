@@ -1,10 +1,9 @@
-This is the newer version of the web app that is not yet working!
-Feel free to debug!
+This is the functioning app that is deployed at:
+http://musicrecommendercdips.appspot.com/
 
-Follow these instructions to get it working:
+Follow these instructions to get it working locally:
 
-Hey dudes -- you should be able to run this app locally if you follow these steps:
-From within the recommender_app_gcloud directory, type this in the command line:
+From within the recommender_app_gcloud_NEW directory, type this in the command line:
 source env/bin/activate
 pip install -r requirements.txt
 
@@ -18,6 +17,7 @@ ElenasRelevantSongs
 
 If you don't have them, use this google drive link to a folder called "DF_for_recommender":
 https://drive.google.com/open?id=0B8TqvogLXwZrWGdBU2NwV3dNYzg
+(And download those files and put them in this directory)
 
 Then type:
 python main.py
